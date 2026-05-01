@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oh Barbeiro – Agendamento</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="CSS/DG.CSS"/>
+</head>
+<body>
+
+  <header>
+    <span class="icone">✂️</span>
+    <h1>OH BARBEIRO</h1>
+    <p>Agende seu horário</p>
+    <div class="divisor"></div>
+  </header>
+
+  <main class="card">
+
+    <!-- PASSO 1: Dados do cliente -->
+    <section class="secao">
+      <h2 class="titulo-secao">Seus dados</h2>
+      <div class="campo">
+        <label for="nome">Seu nome</label>
+        <input type="text" id="nome" placeholder="Ex: João Silva" />
+      </div>
+      <div class="campo">
+        <label for="telefone">Seu WhatsApp</label>
+        <input type="tel" id="telefone" placeholder="Ex: (83) 99999-9999" />
+      </div>
+    </section>
+
+    <!-- PASSO 2: Serviços -->
+    <section class="secao">
+      <h2 class="titulo-secao">Escolha os serviços</h2>
+      <p class="dica">Selecione seu serviço</p>
+
+      <!--
+        O grid de serviços é gerado automaticamente pelo FUNSAO.JS
+        lendo os preços salvos pelo painel admin no localStorage.
+        Se o admin nunca tiver salvo nada, usa os valores padrão.
+      -->
+      <div class="servicos-grid" id="servicos-grid">
+        <!-- preenchido pelo FUNSAO.JS -->
+      </div>
+
+      <div id="caixa-total" class="caixa-total escondido">
+        <span class="total-label">💰 Total estimado:</span>
+        <span id="valor-total" class="total-valor">R$ 0</span>
+      </div>
+    </section>
+
+    <!-- PASSO 3: Data e hora -->
+    <section class="secao">
+      <h2 class="titulo-secao">Data e horário</h2>
+
+      <div class="campo">
+        <label for="data">Escolha a data</label>
+        <input type="date" id="data" />
+        <p id="aviso-domingo" class="aviso-campo escondido">
+          ⛔ Não trabalhamos aos domingos. Escolha outro dia.
+        </p>
+      </div>
+
+      <div class="campo">
+        <label>Escolha o horário</label>
+        <div id="grade-horarios" class="grade-horarios">
+          <p class="hint-horario">← Primeiro escolha uma data</p>
+        </div>
+        <input type="hidden" id="horario-selecionado" />
+      </div>
+    </section>
+
+    <!-- PASSO 4: Observações -->
+    <section class="secao">
+      <h2 class="titulo-secao">Observações <span class="opcional">(opcional)</span></h2>
+      <div class="campo">
+        <textarea id="obs" rows="3" placeholder="Ex: quero o cabelo bem curto nas laterais..."></textarea>
+      </div>
+    </section>
+
+    <button id="btn-agendar" onclick="agendar()">
+      📲 Agendar pelo WhatsApp
+    </button>
+
+  </main>
+
+  <script src="SCRIP/FUNSAO.JS"></script>
+</body>
+</html>

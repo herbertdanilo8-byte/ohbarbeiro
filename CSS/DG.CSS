@@ -1,0 +1,265 @@
+/* ============================================
+   ARQUIVO: DG.CSS
+   Oh Barbeiro – tema escuro com dourado
+   ============================================ */
+
+:root {
+  --dourado: #c9a84c;
+  --dourado-claro: #e8c96a;
+  --fundo: #0d0d0d;
+  --card: #161616;
+  --card2: #1f1f1f;
+  --borda: #2e2e2e;
+  --texto: #e8e0d0;
+  --cinza: #888888;
+  --erro: #e05555;
+  --verde: #4caf78;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--fundo);
+  color: var(--texto);
+  font-family: 'Barlow', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px 80px;
+}
+
+/* ── CABEÇALHO ── */
+header {
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+  padding: 48px 0 32px;
+}
+.icone { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+header h1 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(3rem, 12vw, 5rem);
+  letter-spacing: 8px;
+  color: var(--dourado);
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(201,168,76,.4);
+}
+header p { margin-top: 8px; font-size: .8rem; letter-spacing: 4px; text-transform: uppercase; color: var(--cinza); }
+.divisor { width: 60px; height: 2px; background: linear-gradient(90deg,transparent,var(--dourado),transparent); margin: 18px auto 0; }
+
+/* ── CARD ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 36px 28px;
+  width: 100%;
+  max-width: 560px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.6);
+}
+
+/* ── SEÇÕES ── */
+.secao { margin-bottom: 36px; }
+.titulo-secao {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+  color: var(--dourado);
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--borda);
+  padding-bottom: 8px;
+}
+.opcional { font-family:'Barlow',sans-serif; font-size:.75rem; font-weight:300; color:var(--cinza); }
+.dica { font-size:.82rem; color:var(--cinza); margin-bottom:14px; }
+
+/* ── CAMPOS ── */
+.campo { margin-bottom: 16px; }
+.campo label { display:block; font-size:.78rem; letter-spacing:2px; text-transform:uppercase; color:var(--cinza); margin-bottom:8px; }
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  background: var(--card2);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  color: var(--texto);
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  padding: 13px 16px;
+  outline: none;
+  transition: border-color .25s, box-shadow .25s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+}
+.campo input::placeholder,
+.campo textarea::placeholder { color: #555; }
+.campo input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(.5) sepia(1) saturate(2) hue-rotate(5deg);
+  cursor: pointer;
+}
+.campo textarea { resize: vertical; min-height: 80px; }
+
+/* Aviso de domingo */
+.aviso-campo {
+  margin-top: 8px;
+  font-size: .85rem;
+  color: var(--erro);
+  font-weight: 600;
+}
+
+/* ── GRID DE SERVIÇOS ── */
+.servicos-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+.servico {
+  background: var(--card2);
+  border: 2px solid var(--borda);
+  border-radius: 12px;
+  padding: 16px 14px;
+  cursor: pointer;
+  position: relative;
+  transition: border-color .2s, background .2s, transform .15s;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  user-select: none;
+}
+.servico:hover { border-color: var(--dourado); transform: translateY(-2px); }
+.servico.selecionado {
+  border-color: var(--dourado);
+  background: rgba(201,168,76,.1);
+  box-shadow: 0 0 16px rgba(201,168,76,.2);
+}
+.servico strong { font-size: .9rem; font-weight: 600; color: var(--texto); }
+.preco { font-size: .85rem; color: var(--dourado); font-weight: 600; }
+.preco.gratis { color: var(--verde); }
+.tag-promo {
+  position: absolute; top: 8px; right: 8px;
+  background: var(--dourado); color: #000;
+  font-size: .6rem; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 2px 7px; border-radius: 20px;
+}
+.servico.selecionado::after {
+  content: '✓'; position: absolute; bottom: 10px; right: 12px;
+  color: var(--dourado); font-size: 1rem; font-weight: 700;
+}
+
+/* ── CAIXA DE TOTAL ── */
+.caixa-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: rgba(201,168,76,.08);
+  border: 1px solid var(--dourado);
+  border-radius: 12px;
+}
+.caixa-total.escondido { display: none; }
+.total-label { font-size: .85rem; letter-spacing: 1px; color: var(--cinza); text-transform: uppercase; }
+.total-valor { font-family:'Bebas Neue',cursive; font-size: 1.6rem; letter-spacing: 2px; color: var(--dourado); }
+
+
+/* ══════════════════════════════════════════
+   GRADE DE HORÁRIOS — NOVO
+══════════════════════════════════════════ */
+
+.grade-horarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* Hint inicial antes de escolher data */
+.hint-horario {
+  font-size: .82rem;
+  color: var(--cinza);
+  font-style: italic;
+}
+
+/* Botão de horário disponível */
+.btn-horario {
+  background: var(--card2);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  color: var(--texto);
+  font-family: 'Barlow', sans-serif;
+  font-size: .88rem;
+  font-weight: 600;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: border-color .2s, background .2s, transform .1s;
+  min-width: 68px;
+  text-align: center;
+}
+.btn-horario:hover {
+  border-color: var(--dourado);
+  transform: translateY(-1px);
+}
+
+/* Estado: SELECIONADO */
+.btn-horario.ativo {
+  background: var(--dourado);
+  border-color: var(--dourado);
+  color: #000;
+  font-weight: 700;
+}
+
+/* Estado: OCUPADO (já reservado) */
+.btn-horario.ocupado {
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+  color: #3a3a3a;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  opacity: .6;
+}
+
+
+/* ── BOTÃO AGENDAR ── */
+#btn-agendar {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+  border: none;
+  border-radius: 12px;
+  color: #000;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: opacity .2s, transform .15s, box-shadow .2s;
+  box-shadow: 0 8px 24px rgba(201,168,76,.3);
+  margin-top: 8px;
+}
+#btn-agendar:hover { opacity:.92; transform:translateY(-2px); box-shadow:0 12px 32px rgba(201,168,76,.45); }
+#btn-agendar:active { transform:translateY(0); }
+
+/* ── ERRO ── */
+#msg-erro {
+  display: none;
+  background: rgba(224,85,85,.12);
+  border: 1px solid var(--erro);
+  border-radius: 10px;
+  color: var(--erro);
+  font-size: .88rem;
+  padding: 12px 16px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* ── UTILITÁRIOS ── */
+.escondido { display: none !important; }
+
+/* ── RESPONSIVO ── */
+@media (max-width: 380px) {
+  .servicos-grid { grid-template-columns: 1fr; }
+  .card { padding: 24px 18px; }
+  .btn-horario { min-width: 58px; font-size: .8rem; padding: 8px 10px; }
+}
